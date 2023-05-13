@@ -14,7 +14,7 @@ const Register = () => {
         setUserData(prev => ({ ...prev, [name]: value }))
     }
     const handleSignIn = async () => {
-        await axios.post("http://localhost:3000/api/register", userData)
+        await axios.post(`${process.env.NEXTAUTH_URL}/api/register`, userData)
     }
 
     return (
