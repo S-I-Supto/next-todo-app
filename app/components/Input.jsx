@@ -16,7 +16,7 @@ const Input = ({ id }) => {
         e.preventDefault();
         setTitle(''); setDescription('')
         try {
-            const data = await axios.post(`${process.env.NEXTAUTH_URL}/api/settodo`, { title, description, ownerId: id })
+            const data = await axios.post(`/api/settodo`, { title, description, ownerId: id })
             router.refresh()
             console.log(data);
         } catch (error) {
