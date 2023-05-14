@@ -44,7 +44,7 @@ model Account {
 model todo {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   title       String
-  description String
+  description String?
   ownerName   String?
   ownerId     String  @db.ObjectId
   owner       User    @relation(fields: [ownerId], references: [id])

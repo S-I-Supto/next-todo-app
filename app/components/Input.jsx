@@ -2,6 +2,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import axios from "axios"
+import { toast } from "react-hot-toast"
 const Input = ({ id }) => {
     const router = useRouter();
     const [title, setTitle] = useState('')
@@ -17,6 +18,7 @@ const Input = ({ id }) => {
         setTitle(''); setDescription('')
         try {
             const data = await axios.post(`/api/settodo`, { title, description, ownerId: id })
+            toast.success('added')
             router.refresh()
             console.log(data);
         } catch (error) {
@@ -33,7 +35,7 @@ const Input = ({ id }) => {
                 text-white transition
             "
             />
-            <input type="text" placeholder="description" required value={description} onChange={handleDescription}
+            <input type="text" placeholder="description" value={description} onChange={handleDescription}
                 className="bg-transparent 
                            border-b border-cyan-400
                            px-2 py-2  focus:outline-none

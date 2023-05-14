@@ -23,19 +23,17 @@ export const authOptions = {
             },
             async authorize(credentials, req) {
                 const { email, password } = credentials;
-                console.log('from [...nextauth] ', email, password)
                 const user = await prisma.User.findUnique({
                     where: {
                         email: email
                     }
                 });
                 console.log('the user is ', user);
-                if (!user) {
+                if (user === null) {
                     throw new Error("Invalid Email or Password");
                 }
 
-                const isPasswordMatched = await bcrypt.compare(password, user.password);
-
+                const isPasswordMatched = await bcrypt.compare(password, user.hashedPassword);
                 if (!isPasswordMatched) {
                     throw new Error("Invalid Email or Password");
                 }
