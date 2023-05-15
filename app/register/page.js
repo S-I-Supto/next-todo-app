@@ -25,8 +25,7 @@ const Register = () => {
         e.preventDefault()
         try {
             await axios.post(`/api/register`, userData)
-            toast.success('user created successfully')
-            router.push('/')
+            router.push('/login')
 
         } catch (err) {
             toast.error(err.message)

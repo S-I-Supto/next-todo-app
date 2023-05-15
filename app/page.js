@@ -13,16 +13,16 @@ export default async function Home() {
     <>
       <div className="flex flex-col items-center gap-3 mt-2 mb-4">
         {image !== null && <Image src={image} width={90} height={90} alt="user-profile" className="rounded-full" />}
-        <h1 className="text-xl md:text-2xl">Welcome {name} to Todo app!</h1>
+        <h1 className="text-xl md:text-2xl mt-[6px]">Welcome {name}!</h1>
       </div>
       <Input id={id} />
       <div className="px-4 mt-4">
-        {
-          alltodos.map((e) => {
+        {alltodos.length !== 0 ?
+          (alltodos.map((e) => {
             return (
               <AllTodos key={e.id} id={e.id} title={e.title} description={e.description} />
             )
-          })
+          })) : (<><h1 className="text-center mt-2 text-gray-400">No data to show</h1></>)
         }
       </div>
     </>
